@@ -52,10 +52,10 @@ TARGET_KERNEL_SOURCE := kernel/htc/msm8974
 TARGET_KERNEL_CONFIG := cm_a5_defconfig
 
 # Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(HOST_OS),linux)
-WITH_DEXPREOPT := true
-DONT_DEXPREOPT_PREBUILTS := true
-endif
+#ifeq ($(HOST_OS),linux)
+#WITH_DEXPREOPT := true
+#DONT_DEXPREOPT_PREBUILTS := true
+#endif
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
@@ -75,7 +75,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 # Camera
 TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_ext
-COMMON_GLOBAL_CFLAGS += -DPROPERTY_PERMS_APPEND='{"htc.camera.sensor.", AID_CAMERA, 0}, {"camera.4k2k.", AID_MEDIA, 0},'
+#COMMON_GLOBAL_CFLAGS += -DPROPERTY_PERMS_APPEND='{"htc.camera.sensor.", AID_CAMERA, 0}, {"camera.4k2k.", AID_MEDIA, 0},'
 TARGET_USE_COMPAT_GRALLOC_ALIGN := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
@@ -96,9 +96,6 @@ TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 
 # Includes
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
-
-# Init
-TARGET_INIT_VENDOR_LIB := libinit_msm
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true

@@ -185,7 +185,7 @@ const char CameraParameters::CONTI_BURST_CAPTURE_DONE[] = "contiburst-done";
 const char CameraParameters::KEY_FORCE_USE_AUDIO_ENABLED[] = "forceuseaudio";
 
 CameraParameters::CameraParameters()
-    : CameraParameters_EXT(this), mMap()
+ //   : CameraParameters_EXT(this), mMap()
 {
 }
 

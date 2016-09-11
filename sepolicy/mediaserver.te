@@ -1,8 +1,8 @@
-allow mediaserver debugfs:file r_file_perms;
+#allow mediaserver debugfs:file r_file_perms;
 allow mediaserver system_server:unix_stream_socket { read write };
 allow mediaserver time_helper_device:chr_file rw_file_perms;
 allow mediaserver firmware_file:dir search;
 allow mediaserver firmware_file:file r_file_perms;
 allow mediaserver socket_device:sock_file write;
 allow mediaserver thermal-engine:unix_stream_socket connectto;
-allow mediaserver system_file:file execmod;
+#allow mediaserver system_file:file execmod;

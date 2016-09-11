@@ -20,7 +20,7 @@
 #include <utils/KeyedVector.h>
 #include <utils/String8.h>
 #include <camera/CameraParametersExtra.h>
-#include <camera/CameraParameters_EXT.h>
+//#include <camera/CameraParameters_EXT.h>
 
 namespace android {
 
@@ -39,7 +39,7 @@ struct Size {
     }
 };
 
-class CameraParameters : public CameraParameters_EXT
+class CameraParameters //: public CameraParameters_EXT
 {
 public:
     CameraParameters();
