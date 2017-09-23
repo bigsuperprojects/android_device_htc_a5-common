@@ -108,9 +108,9 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # FM Radio
-PRODUCT_PACKAGES += \
-    FMRadio \
-    libfmjni
+#PRODUCT_PACKAGES += \
+ #   FMRadio \
+ #   libfmjni
 
 # HTC logging symbols, camera shim
 PRODUCT_PACKAGES += \

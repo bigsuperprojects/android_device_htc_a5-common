@@ -50,8 +50,11 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02008000 -
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-5.3/bin
 TARGET_TOOLCHAIN_ROOT := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-5.3/bin
-TARGET_KERNEL_SOURCE := kernel/htc/msm8974
-TARGET_KERNEL_CONFIG := cm_a5_defconfig
+TARGET_KERNEL_SOURCE := kernel/htc/msm8974_los
+TARGET_KERNEL_CONFIG := lineage_a5_defconfig
+#TARGET_KERNEL_SOURCE := kernel/htc/msm8974
+#TARGET_KERNEL_CONFIG := cm_a5_defconfig
+
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
@@ -181,7 +184,24 @@ BOARD_HARDWARE_CLASS += \
     hardware/cyanogen/cmhw
 
 #TWRP
+TW_MTP_DEVICE := Desire816
 TW_THEME := portrait_hdpi
+DEVICE_RESOLUTION := 720x1280
+TW_NO_USB_STORAGE := true
+TW_NO_SCREEN_BLANK := true
+TW_MAX_BRIGHTNESS := 255
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
+TW_IGNORE_MT_POSITION_0 := true
+# include Logcat daemon for help in debugging
+TWRP_INCLUDE_LOGCAT := true
+# Log touch input
+#TWRP_EVENT_LOGGING := true
 
 # SDClang
 TARGET_USE_SDCLANG := true
