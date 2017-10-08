@@ -16,14 +16,11 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 $(call inherit-product-if-exists, vendor/htc/a5-common/a5-common-vendor.mk)
 
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
-
-
-PRODUCT_PACKAGES += \
-    Gello
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -78,6 +75,8 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
     audio.a2dp.default \
     audio_amplifier.msm8226 \
     audio_policy.msm8226 \
@@ -90,6 +89,10 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     tinymix
 
+# Art
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false
+
 # Audio configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
@@ -97,8 +100,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl \
+    libbt-vendor
+
 # Camera
 PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    camera.device@1.0-impl \
     Snap \
     libstlport
 
@@ -107,17 +117,30 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl
+
 # FM Radio
-#PRODUCT_PACKAGES += \
-#    FMRadio \
-#    libfmjni 
+PRODUCT_PACKAGES += \
+    FM2 \
+    libqcomfm_jni \
+    qcom.fmradio
 
 # HTC logging symbols, camera shim
 PRODUCT_PACKAGES += \
     libshim_log \
     libshim_camera
 
+# NFC
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0-impl 
+
 # GPS
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl \
+    gps.msm8226
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/flp.conf:system/etc/flp.conf \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
@@ -126,6 +149,10 @@ PRODUCT_COPY_FILES += \
 
 # Graphics
 PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl \
     copybit.msm8226 \
     hwcomposer.msm8226 \
     gralloc.msm8226 \
@@ -149,13 +176,18 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8226
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.msm8226
+    android.hardware.light@2.0-impl \
+   lights.msm8226
 
 # Media config
 PRODUCT_COPY_FILES += \
@@ -209,9 +241,11 @@ PRODUCT_PACKAGES += \
 
 # WiFi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
     hostapd \
     libwcnss_qmi \
     libwpa_client \
+    wificond \
     wpa_supplicant \
     wpa_supplicant.conf \
     wcnss_service

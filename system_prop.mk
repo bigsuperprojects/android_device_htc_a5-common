@@ -85,10 +85,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
 
-#sdcardfs
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
-
 #loglevel
 #debugging, highest loglevel
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -106,4 +102,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
-    qcom.bluetooth.soc=smd
+    qcom.bluetooth.soc=smdd \
+    ro.bluetooth.dun=true \
+    ro.bluetooth.hfp.ver=1.6 \
+    ro.bluetooth.sap=true \
+    ro.qualcomm.bt.hci_transport=smd
+
