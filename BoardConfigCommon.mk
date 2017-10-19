@@ -150,6 +150,24 @@ BOARD_USES_MMCUTILS := true
 TARGET_RECOVERY_DEVICE_DIRS += device/htc/a5-common
 TARGET_RECOVERY_DEVICE_MODULES += chargeled
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+#BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+
+#TWRP config:
+DEVICE_RESOLUTION := 720x1280
+TW_NO_USB_STORAGE := true
+TW_NO_SCREEN_BLANK := true
+TW_MAX_BRIGHTNESS := 255
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
+TW_IGNORE_MT_POSITION_0 := true
 
 # Filesystem
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -183,6 +201,29 @@ BOARD_HARDWARE_CLASS += \
 #TWRP
 TW_THEME := portrait_hdpi
 
+# MultiROM config
+TARGET_RECOVERY_IS_MULTIROM := true
+MR_DEVICE_VARIANTS := htc_a5ul     # HTC Desire 816 single sim
+MR_DEVICE_VARIANTS += htc_a5dwg    # HTC Desire 816 dual sim
+DEVICE_RESOLUTION := 720x1280
+MR_NO_KEXEC := enabled
+MR_DEVICE_HOOKS := device/htc/a5-common/multirom/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 4
+#MR_DEVICE_SPECIFIC_VERSION := c ... let the build script deal with this!
+MR_DPI := hdpi
+MR_DPI_FONT := 340
+MR_ENCRYPTION :=
+MR_ENCRYPTION_SETUP_SCRIPT := d
+MR_FSTAB := device/htc/a5-common/multirom/mrom.fstab
+MR_INIT_DEVICES := device/htc/a5-common/multirom/mr_init_devices.c
+MR_INPUT_TYPE := type_b
+MR_KEXEC_MEM_MIN := 0x03200000
+MR_KEXEC_DTB := true
+MR_PIXEL_FORMAT := "RGBX_8888"
+MR_USE_MROM_FSTAB := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+
+BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)
 # SDClang
 TARGET_USE_SDCLANG := true
 
